@@ -17,7 +17,6 @@
         .font-handwritten {
             font-family: 'Caveat', cursive;
         }
-        /* Custom floating animation */
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
@@ -44,8 +43,8 @@
         
         <div class="flex justify-center mb-6">
             <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-inner bg-pink-100 flex items-center justify-center relative">
-                <!-- Foto Awal Menggunakan ImgBB -->
-                <img id="displayGif" src="https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
+                <!-- Foto Menggunakan Server Postimages yang Stabil -->
+                <img id="displayGif" src="https://i.postimg.cc/85zK6LgY/IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
             </div>
         </div>
 
@@ -99,70 +98,42 @@
 
         let isPlaying = false;
 
-        // Kontrol Musik
         musicBtn.addEventListener('click', () => {
             if (isPlaying) {
                 bgMusic.pause();
                 musicIcon.classList.remove('fa-spin');
                 musicIcon.className = 'fa-solid fa-music-slash text-gray-500';
             } else {
-                bgMusic.play().catch(e => console.log("Audio play diblokir browser."));
+                bgMusic.play().catch(e => console.log("Audio play diblokir."));
                 musicIcon.classList.add('fa-spin');
                 musicIcon.className = 'fa-solid fa-music text-pink-600';
             }
             isPlaying = !isPlaying;
         });
 
-        // Efek Tombol Menghindar
         function moveNoButton() {
-            if (!isPlaying) {
-                bgMusic.play().catch(() => {});
-                musicIcon.classList.add('fa-spin');
-                isPlaying = true;
-            }
-
-            const cardRect = mainCard.getBoundingClientRect();
-            const btnWidth = noBtn.offsetWidth;
-            const btnHeight = noBtn.offsetHeight;
-
-            const padding = 20;
-            const maxX = window.innerWidth - btnWidth - padding;
-            const maxY = window.innerHeight - btnHeight - padding;
-
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-
+            if (!isPlaying) { bgMusic.play().catch(() => {}); musicIcon.classList.add('fa-spin'); isPlaying = true; }
+            const btnWidth = noBtn.offsetWidth; const btnHeight = noBtn.offsetHeight;
+            const maxX = window.innerWidth - btnWidth - 20; const maxY = window.innerHeight - btnHeight - 20;
             noBtn.style.position = 'fixed';
-            noBtn.style.left = `${randomX}px`;
-            noBtn.style.top = `${randomY}px`;
-            noBtn.style.zIndex = '999';
-
-            // Menggunakan link alternatif Tenor yang stabil saat menghindar
+            noBtn.style.left = `${Math.random() * maxX}px`;
+            noBtn.style.top = `${Math.random() * maxY}px`;
             displayGif.src = "https://media.tenor.com/y4_9676v4gAAAAAi/cute-bear.gif";
         }
 
         noBtn.addEventListener('mouseover', moveNoButton);
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            moveNoButton();
-        });
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoButton(); });
 
         yesBtn.addEventListener('click', () => {
-            if (!isPlaying) {
-                bgMusic.play().catch(() => {});
-                musicIcon.classList.add('fa-spin');
-                isPlaying = true;
-            }
-
-            // Foto Tetap Bertahan Menggunakan ImgBB Saat Sukses Mendulang Cinta
-            displayGif.src = "https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg";
+            if (!isPlaying) { bgMusic.play().catch(() => {}); musicIcon.classList.add('fa-spin'); isPlaying = true; }
+            displayGif.src = "https://i.postimg.cc/85zK6LgY/IMG-20260606-WA0377.jpg";
             interactionSection.classList.add('hidden');
             successSection.classList.remove('hidden');
             createHeartStorm();
         });
 
         function createHeartStorm() {
-            const emojis = ['❤️', '🤍', '❤️', '🤍', '❤️', '🤍'];
+            const emojis = ['❤️', '🤍', '❤️', '🤍'];
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.classList.add('heart-particle');
@@ -176,9 +147,7 @@
         }
 
         waBtn.addEventListener('click', () => {
-            const nomorWA = "6281215926322"; 
-            const pesan = encodeURIComponent("I LOVE YOU SO MUCH SAYANGG ❤️");
-            window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${pesan}`, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=6281215926322&text=${encodeURIComponent("I LOVE YOU SO MUCH SAYANGG ❤️")}`, '_blank');
         });
     </script>
 </body>
