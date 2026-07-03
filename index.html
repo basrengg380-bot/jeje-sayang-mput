@@ -44,7 +44,7 @@
         
         <div class="flex justify-center mb-6">
             <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-inner bg-pink-100 flex items-center justify-center relative">
-                <img id="displayGif" src="IMG-20260606-WA0377.jpg" alt="Cute Bear" class="object-cover w-full h-full transition-all duration-300">
+                <img id="displayGif" src="IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
             </div>
         </div>
 
@@ -105,7 +105,7 @@
                 musicIcon.classList.remove('fa-spin');
                 musicIcon.className = 'fa-solid fa-music-slash text-gray-500';
             } else {
-                bgMusic.play().catch(e => console.log("Audio play diblokir browser, butuh interaksi user."));
+                bgMusic.play().catch(e => console.log("Audio play diblokir browser."));
                 musicIcon.classList.add('fa-spin');
                 musicIcon.className = 'fa-solid fa-music text-pink-600';
             }
@@ -136,7 +136,8 @@
             noBtn.style.top = `${randomY}px`;
             noBtn.style.zIndex = '999';
 
-            displayGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXA5ZmRtMHdrMXcyMGoxcjAwd2NmaTViaHR1b3I5bndkMjZqOHlqayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T8on6CAvQ9T8I6Y816/giphy.gif";
+            // Ganti ke GIF Tenor aktif saat menghindar
+            displayGif.src = "https://media.tenor.com/y4_9676v4gAAAAAi/cute-bear.gif";
         }
 
         noBtn.addEventListener('mouseover', moveNoButton);
@@ -152,7 +153,8 @@
                 isPlaying = true;
             }
 
-            displayGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDV4MmkzNTA0cnI0c3M0MTN4dnBtMzlyYm42aTBwODcycHZobDBqNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/H7CHv4Y2lJvQO6IAsR/giphy.gif";
+            // Ganti ke GIF Tenor aktif saat sukses
+            displayGif.src = "https://media.tenor.com/LY607v0ZidIAAAAi/yellow-bear-love-hug.gif";
             interactionSection.classList.add('hidden');
             successSection.classList.remove('hidden');
             createHeartStorm();
