@@ -9,31 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
-            overflow-x: hidden;
-        }
-        .font-handwritten {
-            font-family: 'Caveat', cursive;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-        .heart-particle {
-            position: absolute;
-            bottom: -10px;
-            pointer-events: none;
-            animation: float linear infinite;
-        }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%); overflow-x: hidden; }
+        .font-handwritten { font-family: 'Caveat', cursive; }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); opacity: 1; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+        .heart-particle { position: absolute; bottom: -10px; pointer-events: none; animation: float linear infinite; }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 relative">
 
-    <audio id="bgMusic" loop>
-        <source src="jatuhsuka.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop><source src="jatuhsuka.mp3" type="audio/mpeg"></audio>
 
     <button id="musicBtn" class="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg text-pink-600 hover:scale-110 active:scale-95 transition-all duration-300 z-50">
         <i id="musicIcon" class="fa-solid fa-music"></i>
@@ -43,18 +27,14 @@
         
         <div class="flex justify-center mb-6">
             <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-inner bg-pink-100 flex items-center justify-center relative">
-                <!-- LINK IMGBB ASLI KAMU DI SINI -->
-                <img id="displayGif" src="https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
+                <!-- GIF Beruang Lucu -->
+                <img id="displayGif" src="https://media.tenor.com/y4_9676v4gAAAAAi/cute-bear.gif" alt="Cute Bear" class="object-cover w-full h-full transition-all duration-300">
             </div>
         </div>
 
         <div id="interactionSection">
-            <h1 id="questionText" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 leading-tight">
-                Helooo Kesayangan Akuuu
-            </h1>
-            <p id="subText" class="text-gray-600 mb-8 text-sm md:text-base">
-                Hows ur day sayangg?
-            </p>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 leading-tight">Helooo Kesayangan Akuuu</h1>
+            <p class="text-gray-600 mb-8 text-sm md:text-base">Hows ur day sayangg?</p>
 
             <div class="flex flex-row items-center justify-center gap-4 min-h-[60px] relative" id="btnContainer">
                 <button id="yesBtn" class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-8 py-3 rounded-full shadow-lg hover:shadow-pink-300/50 transform active:scale-95 transition-all duration-300 text-lg flex items-center gap-2">
@@ -67,27 +47,18 @@
         </div>
 
         <div id="successSection" class="hidden animate-fade-in">
-            <h1 class="text-4xl md:text-5xl font-handwritten font-bold text-pink-600 mb-4">
-                yeyyyyy
-            </h1>
-            <p class="text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
-                Mau gimanapun harimu, aku selalu bangga padamu ❤️
-            </p>
+            <h1 class="text-4xl md:text-5xl font-handwritten font-bold text-pink-600 mb-4">yeyyyyy</h1>
+            <p class="text-gray-700 mb-6 text-sm md:text-base leading-relaxed">Mau gimanapun harimu, aku selalu bangga padamu ❤️</p>
             <button id="waBtn" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-emerald-300/50 transform active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 mx-auto">
                 <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Love ke jeje
             </button>
         </div>
     </main>
 
-    <footer class="absolute bottom-4 left-0 w-full text-center text-xs text-pink-700/70 z-10">
-        Created with ❤️ untuk kamu
-    </footer>
-
     <script>
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
         const mainCard = document.getElementById('mainCard');
-        const btnContainer = document.getElementById('btnContainer');
         const interactionSection = document.getElementById('interactionSection');
         const successSection = document.getElementById('successSection');
         const displayGif = document.getElementById('displayGif');
@@ -99,23 +70,14 @@
         let isPlaying = false;
 
         musicBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicIcon.classList.remove('fa-spin');
-                musicIcon.className = 'fa-solid fa-music-slash text-gray-500';
-            } else {
-                bgMusic.play().catch(e => console.log("Audio play diblokir."));
-                musicIcon.classList.add('fa-spin');
-                musicIcon.className = 'fa-solid fa-music text-pink-600';
-            }
+            if (isPlaying) { bgMusic.pause(); musicIcon.className = 'fa-solid fa-music-slash text-gray-500'; }
+            else { bgMusic.play().catch(() => {}); musicIcon.className = 'fa-solid fa-music text-pink-600'; }
             isPlaying = !isPlaying;
         });
 
-        // Efek Tombol Menghindar (Menampilkan GIF Beruang Lucu dari Tenor)
         function moveNoButton() {
-            if (!isPlaying) { bgMusic.play().catch(() => {}); musicIcon.classList.add('fa-spin'); isPlaying = true; }
-            const btnWidth = noBtn.offsetWidth; const btnHeight = noBtn.offsetHeight;
-            const maxX = window.innerWidth - btnWidth - 20; const maxY = window.innerHeight - btnHeight - 20;
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
             noBtn.style.position = 'fixed';
             noBtn.style.left = `${Math.random() * maxX}px`;
             noBtn.style.top = `${Math.random() * maxY}px`;
@@ -126,30 +88,19 @@
         noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoButton(); });
 
         yesBtn.addEventListener('click', () => {
-            if (!isPlaying) { bgMusic.play().catch(() => {}); musicIcon.classList.add('fa-spin'); isPlaying = true; }
-            // SAAT DI-KLIK, FOTO TETAP BERTAHAN MENGGUNAKAN LINK IMGBB ASLI
-            displayGif.src = "https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg";
+            displayGif.src = "https://media.tenor.com/LY607v0ZidIAAAAi/yellow-bear-love-hug.gif";
             interactionSection.classList.add('hidden');
             successSection.classList.remove('hidden');
-            createHeartStorm();
+            // Heart storm
+            setInterval(() => {
+                const h = document.createElement('div'); h.className = 'heart-particle'; h.innerText = '❤️';
+                h.style.left = Math.random() * 100 + 'vw'; h.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                document.body.appendChild(h); setTimeout(() => h.remove(), 5000);
+            }, 200);
         });
 
-        function createHeartStorm() {
-            const emojis = ['❤️', '🤍', '❤️', '🤍'];
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart-particle');
-                heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
-                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                document.body.appendChild(heart);
-                setTimeout(() => { heart.remove(); }, 5000);
-            }, 150);
-        }
-
         waBtn.addEventListener('click', () => {
-            window.open(`https://api.whatsapp.com/send?phone=6281215926322&text=${encodeURIComponent("I LOVE YOU SO MUCH SAYANGG ❤️")}`, '_blank');
+            window.open(`https://api.whatsapp.com/send?phone=6281215926322&text=I%20LOVE%20YOU%20SO%20MUCH%20SAYANGG%20❤️`, '_blank');
         });
     </script>
 </body>
