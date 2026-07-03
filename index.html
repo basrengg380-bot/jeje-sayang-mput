@@ -30,8 +30,8 @@
         
         <div class="flex justify-center mb-6">
             <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-inner bg-pink-100 flex items-center justify-center relative">
-                <!-- GIF Beruang Lucu -->
-                <img id="displayGif" src="https://media.tenor.com/y4_9676v4gAAAAAi/cute-bear.gif" alt="Cute Bear" class="object-cover w-full h-full">
+                <!-- GIF Beruang (Link Baru Giphy) -->
+                <img id="displayGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ4ZzVqbmRzZ2RzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMGpxxHOGTdzJC/giphy.gif" alt="Cute Bear" class="object-cover w-full h-full">
             </div>
         </div>
 
@@ -76,13 +76,13 @@
             noBtn.style.position = 'fixed';
             noBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
             noBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-            displayGif.src = "https://media.tenor.com/7-8gK0n7qA8AAAAi/bear-sad.gif";
         });
 
         yesBtn.addEventListener('click', () => {
-            displayGif.src = "https://media.tenor.com/LY607v0ZidIAAAAi/yellow-bear-love-hug.gif";
+            displayGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJ4ZzVqbmRzZ2RzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKMGpxxHOGTdzJC/giphy.gif";
             interactionSection.classList.add('hidden');
             successSection.classList.remove('hidden');
+            
             // Efek hati
             setInterval(() => {
                 const h = document.createElement('div'); h.className = 'heart-particle'; h.innerText = '❤️';
