@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for my love putri auliaa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
+            overflow-x: hidden;
+        }
+        .font-handwritten {
+            font-family: 'Caveat', cursive;
+        }
+        /* Custom floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .heart-particle {
+            position: absolute;
+            bottom: -10px;
+            pointer-events: none;
+            animation: float linear infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative">
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicBtn" class="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg text-pink-600 hover:scale-110 active:scale-95 transition-all duration-300 z-50">
+        <i id="musicIcon" class="fa-solid fa-music"></i>
+    </button>
+
+    <main id="mainCard" class="bg-white/85 backdrop-blur-md rounded-3xl p-8 shadow-2xl max-w-md w-full text-center border border-white/50 relative z-10 transition-all duration-500 transform hover:scale-[1.02]">
+        
+        <div class="flex justify-center mb-6">
+            <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-inner bg-pink-100 flex items-center justify-center relative">
+                <img id="displayGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWcxM21uOHByOHIzdW9tZXc3M3h5YXk1NWFjdW81YThjN3JleGFubyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/c4Gv0MCFA2NnsgAzvD/giphy.gif" alt="Cute Bear" class="object-cover w-full h-full transition-all duration-300">
+            </div>
+        </div>
+
+        <div id="interactionSection">
+            <h1 id="questionText" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 leading-tight">
+                Helooo Kesayangan Akuuu
+            </h1>
+            <p id="subText" class="text-gray-600 mb-8 text-sm md:text-base">
+                Hows ur day sayangg?
+            </p>
+
+            <div class="flex flex-row items-center justify-center gap-4 min-h-[60px] relative" id="btnContainer">
+                <button id="yesBtn" class="bg-pink-500 hover:bg-pink-600 text-white font-bold px-8 py-3 rounded-full shadow-lg hover:shadow-pink-300/50 transform active:scale-95 transition-all duration-300 text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-heart"></i> Baiikkk!
+                </button>
+                <button id="noBtn" class="bg-gray-400 hover:bg-gray-500 text-white font-bold px-8 py-3 rounded-full shadow-lg transform transition-all duration-300 text-lg absolute md:static">
+                    So bad bebee :(
+                </button>
+            </div>
+        </div>
+
+        <div id="successSection" class="hidden animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-handwritten font-bold text-pink-600 mb-4">
+                yeyyyyy
+            </h1>
+            <p class="text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
+                Mau gimanapun harimu, aku selalu bangga padamu ❤️
+            </p>
+            <button id="waBtn" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-emerald-300/50 transform active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 mx-auto">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Love ke jeje
+            </button>
+        </div>
+    </main>
+
+    <footer class="absolute bottom-4 left-0 w-full text-center text-xs text-pink-700/70 z-10">
+        Created with ❤️ untuk kamu
+    </footer>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const mainCard = document.getElementById('mainCard');
+        const btnContainer = document.getElementById('btnContainer');
+        const interactionSection = document.getElementById('interactionSection');
+        const successSection = document.getElementById('successSection');
+        const displayGif = document.getElementById('displayGif');
+        const waBtn = document.getElementById('waBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicIcon = document.getElementById('musicIcon');
+
+        let isPlaying = false;
+
+        // Kontrol Musik
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.classList.remove('fa-spin');
+                musicIcon.className = 'fa-solid fa-music-slash text-gray-500';
+            } else {
+                bgMusic.play().catch(e => console.log("Audio play diblokir browser, butuh interaksi user."));
+                musicIcon.classList.add('fa-spin');
+                musicIcon.className = 'fa-solid fa-music text-pink-600';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Efek Tombol "So bad bebee :(" Menghindar
+        function moveNoButton() {
+            if (!isPlaying) {
+                bgMusic.play().catch(() => {});
+                musicIcon.classList.add('fa-spin');
+                isPlaying = true;
+            }
+
+            const cardRect = mainCard.getBoundingClientRect();
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            const padding = 20;
+            const maxX = window.innerWidth - btnWidth - padding;
+            const maxY = window.innerHeight - btnHeight - padding;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+            noBtn.style.zIndex = '999';
+
+            displayGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXA5ZmRtMHdrMXcyMGoxcjAwd2NmaTViaHR1b3I5bndkMjZqOHlqayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T8on6CAvQ9T8I6Y816/giphy.gif";
+        }
+
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        yesBtn.addEventListener('click', () => {
+            if (!isPlaying) {
+                bgMusic.play().catch(() => {});
+                musicIcon.classList.add('fa-spin');
+                isPlaying = true;
+            }
+
+            displayGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDV4MmkzNTA0cnI0c3M0MTN4dnBtMzlyYm42aTBwODcycHZobDBqNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/H7CHv4Y2lJvQO6IAsR/giphy.gif";
+            interactionSection.classList.add('hidden');
+            successSection.classList.remove('hidden');
+            createHeartStorm();
+        });
+
+        function createHeartStorm() {
+            const emojis = ['❤️', '🤍', '❤️', '🤍', '❤️', '🤍'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 5000);
+            }, 150);
+        }
+
+        waBtn.addEventListener('click', () => {
+            const nomorWA = "6281215926322"; // <--- GANTI JADI NOMOR WA KAMU (misal: 62812345678)
+            const pesan = encodeURIComponent("I LOVE YOU SO MUCH SAYANGG ❤️");
+            window.open(`https://api.whatsapp.com/send?phone=${081215926322}&text=${I LOVE YOU SO MUCH SAYANGG ❤️}`, '_blank');
+        });
+    </script>
+</body>
+</html>
+
