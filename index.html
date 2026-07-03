@@ -43,8 +43,8 @@
         
         <div class="flex justify-center mb-6">
             <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-inner bg-pink-100 flex items-center justify-center relative">
-                <!-- Foto Menggunakan Server Postimages yang Stabil -->
-                <img id="displayGif" src="https://i.postimg.cc/85zK6LgY/IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
+                <!-- LINK IMGBB ASLI KAMU DI SINI -->
+                <img id="displayGif" src="https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
             </div>
         </div>
 
@@ -111,6 +111,7 @@
             isPlaying = !isPlaying;
         });
 
+        // Efek Tombol Menghindar (Menampilkan GIF Beruang Lucu dari Tenor)
         function moveNoButton() {
             if (!isPlaying) { bgMusic.play().catch(() => {}); musicIcon.classList.add('fa-spin'); isPlaying = true; }
             const btnWidth = noBtn.offsetWidth; const btnHeight = noBtn.offsetHeight;
@@ -126,7 +127,8 @@
 
         yesBtn.addEventListener('click', () => {
             if (!isPlaying) { bgMusic.play().catch(() => {}); musicIcon.classList.add('fa-spin'); isPlaying = true; }
-            displayGif.src = "https://i.postimg.cc/85zK6LgY/IMG-20260606-WA0377.jpg";
+            // SAAT DI-KLIK, FOTO TETAP BERTAHAN MENGGUNAKAN LINK IMGBB ASLI
+            displayGif.src = "https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg";
             interactionSection.classList.add('hidden');
             successSection.classList.remove('hidden');
             createHeartStorm();
