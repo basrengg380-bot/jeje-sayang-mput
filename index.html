@@ -44,7 +44,8 @@
         
         <div class="flex justify-center mb-6">
             <div class="w-48 h-48 rounded-2xl overflow-hidden shadow-inner bg-pink-100 flex items-center justify-center relative">
-                <img id="displayGif" src="IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
+                <!-- Foto Awal Menggunakan ImgBB -->
+                <img id="displayGif" src="https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg" alt="Foto Bersama" class="object-cover w-full h-full transition-all duration-300">
             </div>
         </div>
 
@@ -136,7 +137,7 @@
             noBtn.style.top = `${randomY}px`;
             noBtn.style.zIndex = '999';
 
-            // Ganti ke GIF Tenor aktif saat menghindar
+            // Menggunakan link alternatif Tenor yang stabil saat menghindar
             displayGif.src = "https://media.tenor.com/y4_9676v4gAAAAAi/cute-bear.gif";
         }
 
@@ -153,8 +154,8 @@
                 isPlaying = true;
             }
 
-            // Ganti ke GIF Tenor aktif saat sukses
-            displayGif.src = "IMG-20260606-WA0377.jpg";
+            // Foto Tetap Bertahan Menggunakan ImgBB Saat Sukses Mendulang Cinta
+            displayGif.src = "https://i.ibb.co/5WdzSKYw/IMG-20260606-WA0377.jpg";
             interactionSection.classList.add('hidden');
             successSection.classList.remove('hidden');
             createHeartStorm();
